@@ -1,0 +1,42 @@
+.nav-bar { 
+  font-weight: 500;
+  font-size: 14px;
+  color: #4A5568 !important;
+
+  a { 
+    color: white !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-bar a,
+  .nav-bar a:after,
+  .nav-bar a:before {
+    transition: all .5s;
+  }
+  .nav-bar a:hover {
+    color: #555;
+  }
+
+  .nav-bar a,
+  .nav-bar a {
+    position: relative;
+  }
+
+  .nav-bar a:after,
+  .nav-bar a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #aaa;
+    height: 2px;
+  }
+  .nav-bar a:hover:after {
+    width: 100%;
+  }
+}
