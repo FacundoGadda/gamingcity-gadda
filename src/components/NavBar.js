@@ -40,7 +40,6 @@ const NavBar = () => {
           <FaBars color="white" />
         </NavbarToggler>
 
- 
         {isSmallScreen && <CartWidget />}
 
         <Collapse navbar isOpen={open}>

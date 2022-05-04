@@ -1,6 +1,15 @@
+$primary: #070d2b;
+$secondary: #f4f4f4;
+$cyan: #01B8FC;
+
 $theme-colors: (
-  "primary": #070d2b,
+  "primary": $primary,
+  "secondary": $secondary,
+  "cyan": $cyan,
+  // "white": rgb(255, 255, 255),
 );
+
+$btn-disabled-color: $primary;
 
 @import '~bootstrap/scss/bootstrap.scss';
 

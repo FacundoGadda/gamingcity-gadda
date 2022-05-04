@@ -5,4 +5,17 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
+  background-color: $secondary;
+}
+
+p {
+  font-size: 14px;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.outlined:hover {
+  color: white !important
 }

@@ -5,9 +5,9 @@ import { BiCart } from "react-icons/bi";
 
 const CartWidget = () => {
   return (
-    <Button onClick={e => console.log(e)}>
+    <Button color="primary" onClick={e => console.log(e)}>
       <BiCart color="white" size={30} />
-      <Badge>4</Badge>
+      <Badge color="primary">{""}</Badge>
     </Button>
   );
 };
