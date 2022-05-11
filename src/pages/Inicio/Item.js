@@ -4,15 +4,15 @@ import { formatPrice } from "../../helpers/general_helpers";
 import "./item.scss"
 
 const Item = ({ item }) => {
-  const { title, price, thumbnail, stock } = item
+  const { title, price, thumbnail, available_quantity } = item
 
   const onAdd = (count) => {
     if (count === 1) console.log("Se agregó una unidad")
     else console.log(`Se agregaron ${count} unidades`)
   };
-
+  
   return (
-    <div className="bg-white overflow-hidden">
+    <div className="bg-white overflow-hidden" style={{ height: 350 }}>
       <div className="d-flex justify-content-center">
         <img
           src={thumbnail}
@@ -25,7 +25,7 @@ const Item = ({ item }) => {
       <div className="px-4 py-3">
         <h5>{formatPrice(price)}</h5>
         <p className="text-ellipsis">{title}</p>
-        <ItemCount initial={1} stock={stock} onAdd={onAdd} />
+        <ItemCount initial={1} stock={available_quantity} onAdd={onAdd} />
       </div>
     </div>
   );

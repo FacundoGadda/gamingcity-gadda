@@ -2,23 +2,24 @@ import { useState, useEffect } from "react"
 
 import { Container } from "reactstrap"
 
-import ItemList from "./ItemList"
+import ItemDetailSkeleton from "../Skeletons/ItemDetail"
+import ItemDetail from "./ItemDetail"
 
 const ItemListContainer = () => {
-  const [products, setProducts] = useState([])
+  const [item, setitem] = useState({})
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetch('https://api.mercadolibre.com/sites/MLA/search?q=notebooks')
-      .then(res => res.json())
-      .then(res => setProducts(res.results))
+    fetch("https://api.mercadolibre.com/products/MLA18648558")
+      .then((res) => res.json())
+      .then((res) => setitem(res))
       .finally(() => setLoading(false))
     setLoading(true)
   }, [])
 
   return (
     <Container fluid="lg">
-      <ItemList {...{ products, loading }} />
+      {loading ? <ItemDetailSkeleton /> : <ItemDetail item={item} />}
     </Container>
   );
 };

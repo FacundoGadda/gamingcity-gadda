@@ -5,7 +5,7 @@ import classname from "classnames";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(stock === 0 ? 0 : initial);
-
+  
   return (
     <>
       <div className="d-flex justify-content-between align-items-center bg-secondary">
