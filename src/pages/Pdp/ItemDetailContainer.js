@@ -6,13 +6,13 @@ import ItemDetailSkeleton from "../Skeletons/ItemDetail"
 import ItemDetail from "./ItemDetail"
 
 const ItemListContainer = () => {
-  const [item, setitem] = useState({})
+  const [item, setItem] = useState({})
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     fetch("https://api.mercadolibre.com/products/MLA18648558")
       .then((res) => res.json())
-      .then((res) => setitem(res))
+      .then((res) => setItem(res))
       .finally(() => setLoading(false))
     setLoading(true)
   }, [])
