@@ -5,23 +5,27 @@ import { useMediaQuery } from "react-responsive";
 
 import { formatPrice } from "../../helpers/general_helpers";
 
+import ItemCount from "../ItemCount/ItemCount";
+
 import classname from "classnames";
 
 import "./itemDetail.scss";
 
-const ItemDetail = ({ item }) => {
-  const { name, short_description, pictures, buy_box_winner } = item
+const ItemDetail = ({ item, onAdd }) => {
+  const { name, short_description, pictures, buy_box_winner } = item;
+  const { price, available_quantity } = buy_box_winner ?? "";
 
   const description = short_description?.content;
-  const price = buy_box_winner?.price;
 
   const [isReadMore, setIsReadMore] = useState(true);
   const toggleReadMore = () => setIsReadMore(!isReadMore);
 
   const isBigScreen = useMediaQuery({ minWidth: 768 });
-
   return (
-    <div className="bg-white" style={{ padding: isBigScreen ? 90 : 40 }}>
+    <div
+      className="bg-white box-shadow-detail"
+      style={{ padding: isBigScreen ? 90 : 40 }}
+    >
       <Row className="d-flex align-items-center">
         <Col sm={12} xl={6}>
           <div>
@@ -44,7 +48,7 @@ const ItemDetail = ({ item }) => {
           </div>
         </Col>
         <Col>
-          <div className="d-flex justify-content-center mt-4 mt-xl-0">
+          <div className="d-flex flex-column align-items-center justify-content-center mt-4 mt-xl-0">
             <img
               src={pictures?.[0].url}
               width={250}
@@ -52,6 +56,9 @@ const ItemDetail = ({ item }) => {
               alt="product"
             />
           </div>
+          <Col className="px-5 mt-5">
+            <ItemCount initial={1} stock={available_quantity} onAdd={onAdd} />
+          </Col>
         </Col>
       </Row>
     </div>

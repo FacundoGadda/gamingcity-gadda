@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   Navbar,
   NavItem,
-  NavLink,
   NavbarToggler,
   Nav,
   Collapse,
@@ -12,8 +11,10 @@ import {
 import { FaBars } from "react-icons/fa";
 import { useMediaQuery } from 'react-responsive'
 
+import { Link } from "react-router-dom"
+
 import CartWidget from "./CartWidget";
-import logo from "../assets/logo/logo.svg";
+import logo from "../../assets/logo/logo.svg";
 
 import "./navbar.scss";
 
@@ -29,12 +30,13 @@ const NavBar = () => {
         color="primary"
         container="lg"
         expand="md"
-        className="py-1 py-sm-2"
+        className="py-2 py-sm-3"
+        fixed="top"
         light
       >
-        <NavLink href="/">
+        <Link to="/">
           <img src={logo} alt="logo" height={48} />
-        </NavLink>
+        </Link>
 
         <NavbarToggler onClick={() => setOpen(!open)}>
           <FaBars color="white" />
@@ -48,16 +50,16 @@ const NavBar = () => {
             navbar
           >
             <NavItem>
-              <NavLink href="/">Productos</NavLink>
+              <Link to="/" className="nav-link">Productos</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Componentes</NavLink>
+              <Link to="/category/MLA1652" className="nav-link">Notebooks</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Notebooks</NavLink>
+              <Link to="/category/MLA1672" className="nav-link">Almacenamiento</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Perifericos</NavLink>
+              <Link to="/category/MLA14407" className="nav-link">Monitores</Link>
             </NavItem>
           </Nav>
         </Collapse>

@@ -1,25 +1,34 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-import { Container } from "reactstrap"
+import { Container } from "reactstrap";
+import { useParams } from "react-router-dom";
 
-import ItemList from "./ItemList"
+import ItemList from "./ItemList";
+import Layout from "../../components/Layout/Layout";
+import { catalogFilter, categoryFilter } from "../../helpers/general_helpers";
+import { getProducts } from "../../services/api";
 
 const ItemListContainer = () => {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
+  const { id } = useParams();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.mercadolibre.com/sites/MLA/search?q=notebooks')
-      .then(res => res.json())
-      .then(res => setProducts(res.results))
-      .finally(() => setLoading(false))
-    setLoading(true)
-  }, [])
+    getProducts()
+      .then((res) => {
+        if (id) {
+          setProducts(categoryFilter(res.results, id))
+        } else {
+          setProducts(catalogFilter(res.results))
+        }
+      })
+  }, [id]);
 
   return (
-    <Container fluid="lg">
-      <ItemList {...{ products, loading }} />
-    </Container>
+    <Layout>
+      <Container fluid="lg">
+        <ItemList {...{ products }} />
+      </Container>
+    </Layout>
   );
 };
 

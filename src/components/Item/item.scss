@@ -5,3 +5,9 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
+
+.item-box-shadow {
+  &:hover {
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+}

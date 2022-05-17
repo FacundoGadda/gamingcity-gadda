@@ -6,10 +6,15 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: $secondary;
+  padding-top: 80px;
 }
 
 p {
   font-size: 14px;
+}
+
+.p-12 {
+  padding: 12px !important;
 }
 
 .fs-13 { 
