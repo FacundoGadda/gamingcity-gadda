@@ -22,9 +22,8 @@ const ItemListContainer = () => {
     setLoading(true);
   }, [id]);
 
-  const onAdd = (count) => {
-    if (count === 1) console.log("Se agregó una unidad");
-    else console.log(`Se agregaron ${count} unidades`);
+  const onAdd = (count, setQuantity) => {
+    setQuantity(count)
   };
 
   return (

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "reactstrap";
 import classname from "classnames";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
+const ItemCount = ({ stock, initial, onAdd, setQuantity }) => {
   const [count, setCount] = useState(stock === 0 ? 0 : initial);
   
   return (
@@ -34,7 +34,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
           </div>
         ) : (
           <Button
-            onClick={() => onAdd(count)}
+            onClick={() => onAdd(count, setQuantity)}
             color="cyan"
             className="w-100 rounded-3 mb-2 outlined shadow-none"
             outline
