@@ -1,50 +1,84 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import { Button } from "reactstrap";
-import classname from "classnames";
+import { Button } from "reactstrap"
+import classname from "classnames"
+import { Link } from "react-router-dom"
 
-const ItemCount = ({ stock, initial, onAdd, setQuantity }) => {
-  const [count, setCount] = useState(stock === 0 ? 0 : initial);
+import { useCartContext } from "../../context/CartContext"
+
+const ItemCount = ({ stock, initial, item }) => {
+  const [count, setCount] = useState(stock === 0 ? 0 : initial)
+  const [click, setClick] = useState(false)
+
+  const { addToCart, cartList } = useCartContext()
+
+  console.log(cartList)
   
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center bg-secondary">
-        <Button
-          onClick={() => setCount(count - 1)}
-          disabled={count === 1 || stock === 0}
-          className="shadow-none"
-        >
-          <span className={classname({ "text-muted": count === 1 })}>-</span>
-        </Button>
-        <h6 className="mb-0">{count}</h6>
-        <Button
-          onClick={() => setCount(count + 1)}
-          disabled={count === stock || stock === 0}
-          className="shadow-none"
-        >
-          <span className={classname({ "text-muted": count === stock })}>
-            +
-          </span>
-        </Button>
-      </div>
-      <div className="mt-3">
-        {stock === 0 ? (
-          <div className="d-flex align-items-center justify-content-center">
-            <p className="text-muted mb-1">Artículo no disponible</p>
+      {click ? (
+        <div className="d-flex justify-content-evenly gap-2">
+          <Link to="/cart">
+            <Button
+              color="cyan"
+              className="w-100 rounded-3 mb-2 outlined shadow-none"
+              outline
+            >
+              Ir al carrito
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button>Seguir navegando</Button>
+          </Link>
+        </div>
+      ) : (
+        <>
+          <div className="d-flex justify-content-between align-items-center bg-secondary">
+            <Button
+              onClick={() => setCount(count - 1)}
+              disabled={count === 1 || stock === 0}
+              className="shadow-none"
+            >
+              <span className={classname({ "text-muted": count === 1 })}>
+                -
+              </span>
+            </Button>
+            <h6 className="mb-0">{count}</h6>
+            <Button
+              onClick={() => setCount(count + 1)}
+              disabled={count === stock || stock === 0}
+              className="shadow-none"
+            >
+              <span className={classname({ "text-muted": count === stock })}>
+                +
+              </span>
+            </Button>
           </div>
-        ) : (
-          <Button
-            onClick={() => onAdd(count, setQuantity)}
-            color="cyan"
-            className="w-100 rounded-3 mb-2 outlined shadow-none"
-            outline
-          >
-            <p className="mb-0 fw-500">Agregar al carrito</p>
-          </Button>
-        )}
-      </div>
+          <div className="mt-3">
+            {stock === 0 ? (
+              <div className="d-flex align-items-center justify-content-center">
+                <p className="text-muted mb-1">Artículo no disponible</p>
+              </div>
+            ) : (
+              <>
+                <Button
+                  onClick={() => {
+                    addToCart(item, count)
+                    setClick(true)
+                  }}
+                  color="cyan"
+                  className="w-100 rounded-3 mb-2 outlined shadow-none"
+                  outline
+                >
+                  <p className="mb-0 fw-500">Agregar al carrito</p>
+                </Button>
+              </>
+            )}
+          </div>
+        </>
+      )}
     </>
-  );
-};
+  )
+}
 
-export default ItemCount;
+export default ItemCount

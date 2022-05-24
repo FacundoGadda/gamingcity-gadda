@@ -1,7 +1,7 @@
 import { Row, Col } from "reactstrap";
 
-import Item from "../../components/Item/Item";
-import SkeletonItem from "../../components/Skeletons/Item";
+import Item from "../Item/Item";
+import SkeletonItem from "../Skeletons/Item";
 
 const ItemList = ({ products, loading }) => {
   return (

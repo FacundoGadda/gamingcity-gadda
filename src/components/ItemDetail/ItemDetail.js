@@ -1,28 +1,25 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
 
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col } from "reactstrap"
 import { useMediaQuery } from "react-responsive"
 
-import { formatPrice } from "../../helpers/general_helpers"
-
 import ItemCount from "../ItemCount/ItemCount"
+import { formatPrice } from "../../helpers/general_helpers"
 
 import classname from "classnames"
 
 import "./itemDetail.scss"
 
-const ItemDetail = ({ item, onAdd }) => {
+const ItemDetail = ({ item }) => {
   const { name, short_description, pictures, buy_box_winner } = item
   const { price, available_quantity } = buy_box_winner ?? ""
-
   const description = short_description?.content
 
   const [isReadMore, setIsReadMore] = useState(true)
-  const [quantity, setQuantity] = useState(0)
   const toggleReadMore = () => setIsReadMore(!isReadMore)
 
   const isBigScreen = useMediaQuery({ minWidth: 768 })
+
   return (
     <div
       className="bg-white box-shadow-detail"
@@ -59,29 +56,7 @@ const ItemDetail = ({ item, onAdd }) => {
             />
           </div>
           <Col className="px-5 mt-5">
-            {quantity > 0 ? (
-              <div className="d-flex justify-content-evenly gap-2">
-                <Link to="/cart" >
-                  <Button
-                    color="cyan"
-                    className="w-100 rounded-3 mb-2 outlined shadow-none"
-                    outline
-                  >
-                    Ir al carrito
-                  </Button>
-                </Link>
-                <Link to="/">
-                  <Button>Seguir navegando</Button>
-                </Link>
-              </div>
-            ) : (
-              <ItemCount
-                initial={1}
-                stock={available_quantity}
-                onAdd={onAdd}
-                setQuantity={setQuantity}
-              />
-            )}
+            <ItemCount initial={1} stock={available_quantity} item={item} />
           </Col>
         </Col>
       </Row>

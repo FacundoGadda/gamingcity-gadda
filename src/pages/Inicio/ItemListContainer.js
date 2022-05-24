@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Container } from "reactstrap";
 import { useParams } from "react-router-dom";
 
-import ItemList from "./ItemList";
+import ItemList from "../../components/ItemList/ItemList";
 import Layout from "../../components/Layout/Layout";
 import { catalogFilter, categoryFilter } from "../../helpers/general_helpers";
 import { getProducts } from "../../services/api";
