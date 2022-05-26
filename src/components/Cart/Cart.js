@@ -14,14 +14,19 @@ import {
 import Empty from "./Empty"
 
 const Cart = () => {
-  const { cartList, removeItem } = useCartContext()
+  const { cartList, removeItem, clear } = useCartContext()
 
   return (
     <div className="bg-white p-3 py-sm-4 px-sm-5">
-      <div className="d-flex">
+      <div className="d-flex justify-content-between align-items-center mb-2">
         <h6 className="mb-4 text-cyan bg-secondary fw-bold px-4 py-1 rounded-3">
           Carrito ({sumQuantity(cartList)} item/s)
         </h6>
+        {!!cartList.length && (
+          <Button size="sm" onClick={() => clear()}>
+            <p className="mb-0">Vaciar</p>
+          </Button>
+        )}
       </div>
       <div className="d-flex flex-column gap-4 justify-content-center">
         {!cartList.length ? (
