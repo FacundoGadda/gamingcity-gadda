@@ -9,7 +9,7 @@ const ItemDetail = () => {
   return (
     <div className="bg-white align-middle" style={{ padding: isBigScreen ? 90 : 40 }}>
       <Row className="align-middle">
-        <Col sm={12} xl={6}>
+        <Col sm={12}>
           <div className="pt-3">
             <Skeleton count={2} height={18} />
             <h5 className="my-4">

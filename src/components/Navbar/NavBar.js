@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import {
-  Navbar,
-  NavItem,
-  NavbarToggler,
-  Nav,
-  Collapse,
-} from "reactstrap";
+import { Navbar, NavItem, NavbarToggler, Nav, Collapse } from "reactstrap"
 
-import { FaBars } from "react-icons/fa";
-import { useMediaQuery } from 'react-responsive'
+import { FaBars } from "react-icons/fa"
+import { useMediaQuery } from "react-responsive"
 
 import { Link } from "react-router-dom"
 
-import CartWidget from "./CartWidget";
-import logo from "../../assets/logo/logo.svg";
+import CartWidget from "./CartWidget"
+import { useCartContext } from "../../context/CartContext"
+import logo from "../../assets/logo/logo.svg"
 
-import "./navbar.scss";
+import "./navbar.scss"
 
 const NavBar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
+  const { cartList } = useCartContext()
 
   const isBigScreen = useMediaQuery({ minWidth: 768 })
   const isSmallScreen = useMediaQuery({ maxWidth: 767 })
@@ -42,7 +38,7 @@ const NavBar = () => {
           <FaBars color="white" />
         </NavbarToggler>
 
-        {isSmallScreen && <CartWidget />}
+        {isSmallScreen && !!cartList.length && <CartWidget />}
 
         <Collapse navbar isOpen={open}>
           <Nav
@@ -50,25 +46,32 @@ const NavBar = () => {
             navbar
           >
             <NavItem>
-              <Link to="/" className="nav-link">Productos</Link>
+              <Link to="/" className="nav-link">
+                Productos
+              </Link>
             </NavItem>
             <NavItem>
-              <Link to="/category/MLA1652" className="nav-link">Notebooks</Link>
+              <Link to="/category/MLA1652" className="nav-link">
+                Notebooks
+              </Link>
             </NavItem>
             <NavItem>
-              <Link to="/category/MLA1672" className="nav-link">Almacenamiento</Link>
+              <Link to="/category/MLA1672" className="nav-link">
+                Almacenamiento
+              </Link>
             </NavItem>
             <NavItem>
-              <Link to="/category/MLA14407" className="nav-link">Monitores</Link>
+              <Link to="/category/MLA14407" className="nav-link">
+                Monitores
+              </Link>
             </NavItem>
           </Nav>
         </Collapse>
 
-        {isBigScreen && <CartWidget />}
-
+        {isBigScreen && !!cartList.length && <CartWidget />}
       </Navbar>
     </div>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

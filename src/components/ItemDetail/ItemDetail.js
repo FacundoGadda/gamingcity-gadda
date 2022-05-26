@@ -4,7 +4,8 @@ import { Row, Col } from "reactstrap"
 import { useMediaQuery } from "react-responsive"
 
 import ItemCount from "../ItemCount/ItemCount"
-import { formatPrice } from "../../helpers/general_helpers"
+import { formatPrice, checkStock } from "../../helpers/general_helpers"
+import { useCartContext } from "../../context/CartContext"
 
 import classname from "classnames"
 
@@ -15,6 +16,8 @@ const ItemDetail = ({ item }) => {
   const { price, available_quantity } = buy_box_winner ?? ""
   const description = short_description?.content
 
+  const { cartList } = useCartContext()
+
   const [isReadMore, setIsReadMore] = useState(true)
   const toggleReadMore = () => setIsReadMore(!isReadMore)
 
@@ -23,10 +26,10 @@ const ItemDetail = ({ item }) => {
   return (
     <div
       className="bg-white box-shadow-detail"
-      style={{ padding: isBigScreen ? 90 : 40 }}
+      style={{ padding: isBigScreen ? "40px 90px" : 40 }}
     >
-      <Row className="d-flex align-items-center">
-        <Col sm={12} xl={6}>
+      <Row className="d-flex align-items-center justify-content-center">
+        <Col sm={12}>
           <div>
             <div className="fw-bold">{name}</div>
             <h5 className="my-4">{formatPrice(price)}</h5>
@@ -47,17 +50,24 @@ const ItemDetail = ({ item }) => {
           </div>
         </Col>
         <Col>
-          <div className="d-flex flex-column align-items-center justify-content-center mt-4 mt-xl-0">
+          <div className="d-flex flex-column align-items-center justify-content-center">
             <img
               src={pictures?.[0].url}
               width={250}
-              style={{ objectFit: "cover" }}
+              height={250}
+              style={{ objectFit: "contain" }}
               alt="product"
             />
           </div>
-          <Col className="px-5 mt-5">
-            <ItemCount initial={1} stock={available_quantity} item={item} />
-          </Col>
+          <div className="mt-4 d-flex justify-content-center">
+            <Col style={{ maxWidth: 300 }}>
+              <ItemCount
+                initial={1}
+                stock={checkStock(item.id, available_quantity, cartList)}
+                item={item}
+              />
+            </Col>
+          </div>
         </Col>
       </Row>
     </div>

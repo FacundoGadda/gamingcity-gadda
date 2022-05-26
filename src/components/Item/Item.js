@@ -20,7 +20,7 @@ const Item = ({ item }) => {
         <hr className="my-0 mx-2 text-muted" />
         <div className="px-4 py-3">
           <h5>{formatPrice(price)}</h5>
-          <p className="text-ellipsis">{title}</p>
+          <p className="text-ellipsis mb-2">{title}</p>
         </div>
       </div>
     </Link>

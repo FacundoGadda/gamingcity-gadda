@@ -1,27 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-import { Container } from "reactstrap";
-import { useParams } from "react-router-dom";
+import { Container } from "reactstrap"
+import { useParams } from "react-router-dom"
 
-import ItemList from "../../components/ItemList/ItemList";
-import Layout from "../../components/Layout/Layout";
-import { catalogFilter, categoryFilter } from "../../helpers/general_helpers";
-import { getProducts } from "../../services/api";
+import ItemList from "../../components/ItemList/ItemList"
+import Layout from "../../components/Layout/Layout"
+import { catalogFilter, categoryFilter } from "../../helpers/general_helpers"
+import { getProducts } from "../../services/api"
 
 const ItemListContainer = () => {
-  const { id } = useParams();
-  const [products, setProducts] = useState([]);
+  const { id } = useParams()
+  const [products, setProducts] = useState([])
+  // const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    getProducts()
-      .then((res) => {
-        if (id) {
-          setProducts(categoryFilter(res.results, id))
-        } else {
-          setProducts(catalogFilter(res.results))
-        }
-      })
-  }, [id]);
+    getProducts().then((res) => {
+      if (id) {
+        setProducts(categoryFilter(res.results, id))
+      } else {
+        setProducts(catalogFilter(res.results))
+      }
+    })
+  }, [id])
 
   return (
     <Layout>
@@ -29,7 +29,7 @@ const ItemListContainer = () => {
         <ItemList {...{ products }} />
       </Container>
     </Layout>
-  );
-};
+  )
+}
 
-export default ItemListContainer;
+export default ItemListContainer

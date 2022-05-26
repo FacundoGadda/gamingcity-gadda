@@ -10,13 +10,11 @@ const ItemCount = ({ stock, initial, item }) => {
   const [count, setCount] = useState(stock === 0 ? 0 : initial)
   const [click, setClick] = useState(false)
 
-  const { addToCart, cartList } = useCartContext()
+  const { addToCart } = useCartContext()
 
-  console.log(cartList)
-  
   return (
     <>
-      {click ? (
+      {click || stock === 0 ? (
         <div className="d-flex justify-content-evenly gap-2">
           <Link to="/cart">
             <Button
@@ -55,25 +53,17 @@ const ItemCount = ({ stock, initial, item }) => {
             </Button>
           </div>
           <div className="mt-3">
-            {stock === 0 ? (
-              <div className="d-flex align-items-center justify-content-center">
-                <p className="text-muted mb-1">Artículo no disponible</p>
-              </div>
-            ) : (
-              <>
-                <Button
-                  onClick={() => {
-                    addToCart(item, count)
-                    setClick(true)
-                  }}
-                  color="cyan"
-                  className="w-100 rounded-3 mb-2 outlined shadow-none"
-                  outline
-                >
-                  <p className="mb-0 fw-500">Agregar al carrito</p>
-                </Button>
-              </>
-            )}
+            <Button
+              onClick={() => {
+                addToCart(item, count)
+                setClick(true)
+              }}
+              color="cyan"
+              className="w-100 rounded-3 mb-2 outlined shadow-none"
+              outline
+            >
+              <p className="mb-0 fw-500">Agregar al carrito</p>
+            </Button>
           </div>
         </>
       )}
