@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-import { Container } from "reactstrap";
+import { Container } from "reactstrap"
 
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
 
-import ItemDetailSkeleton from "../../components/Skeletons/ItemDetail";
+import ItemDetailSkeleton from "../../components/Skeletons/ItemDetail"
 import ItemDetail from "../../components/ItemDetail/ItemDetail"
-
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../components/Layout/Layout"
 
 const ItemListContainer = () => {
   const { id } = useParams()
@@ -20,15 +19,19 @@ const ItemListContainer = () => {
       .then((res) => setItem(res))
       .finally(() => setLoading(false))
     setLoading(true)
-  }, [id]);
+  }, [id])
 
   return (
     <Layout>
       <Container className="p-12" style={{ maxWidth: 800 }}>
-        {loading ? <ItemDetailSkeleton /> : <ItemDetail item={item} />}
+        {loading ? (
+          <ItemDetailSkeleton />
+        ) : (
+              <ItemDetail item={item} />
+        )}
       </Container>
     </Layout>
-  );
-};
+  )
+}
 
-export default ItemListContainer;
+export default ItemListContainer

@@ -11,6 +11,7 @@ import CartWidget from "./CartWidget"
 import { useCartContext } from "../../context/CartContext"
 import logo from "../../assets/logo/logo.svg"
 
+import { AnimatePresence, motion } from "framer-motion"
 import "./navbar.scss"
 
 const NavBar = () => {
@@ -38,7 +39,17 @@ const NavBar = () => {
           <FaBars color="white" />
         </NavbarToggler>
 
-        {isSmallScreen && !!cartList.length && <CartWidget />}
+        {isSmallScreen && !!cartList.length && (
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 2 }}
+              exit={{ opacity: 0 }}
+            >
+              <CartWidget />
+            </motion.div>
+          </AnimatePresence>
+        )}
 
         <Collapse navbar isOpen={open}>
           <Nav
@@ -68,7 +79,17 @@ const NavBar = () => {
           </Nav>
         </Collapse>
 
-        {isBigScreen && !!cartList.length && <CartWidget />}
+        {isBigScreen && !!cartList.length && (
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 2 }}
+              exit={{ opacity: 0 }}
+            >
+              <CartWidget />
+            </motion.div>
+          </AnimatePresence>
+        )}
       </Navbar>
     </div>
   )

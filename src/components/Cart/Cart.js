@@ -11,7 +11,9 @@ import {
   sumQuantity,
   sumTotal,
 } from "../../helpers/general_helpers"
+
 import Empty from "./Empty"
+import { AnimatePresence, motion } from "framer-motion"
 
 const Cart = () => {
   const { cartList, removeItem, clear } = useCartContext()
@@ -30,51 +32,64 @@ const Cart = () => {
       </div>
       <div className="d-flex flex-column gap-4 justify-content-center">
         {!cartList.length ? (
+                          <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 2 }}
+                          exit={{ opacity: 0 }}
+                        >
           <Empty />
+          </motion.div>
         ) : (
           <>
-            {cartList.map((item, i) => (
-              <div key={i}>
-                <div className="d-flex align-items-center w-100">
-                  <div className="d-flex align-items-center w-75">
-                    <Link
-                      to={`/item/${item.id}`}
-                      className="text-decoration-none"
-                    >
-                      <img
-                        src={item.pictures?.[0].url}
-                        alt={item.name}
-                        width={60}
-                        height={60}
-                        style={{ objectFit: "contain" }}
-                      />
-                    </Link>
-                    <Link
-                      to={`/item/${item.id}`}
-                      className="mx-4 text-decoration-none"
-                    >
-                      <p className="mb-0 text-ellipsis">{item.name}</p>
-                      <small className="text-muted">
-                        Cantidad: <strong>{item.quantity}</strong>
-                      </small>
-                    </Link>
-                  </div>
-                  <div className="w-25 d-flex align-items-center justify-content-between">
-                    <div>
-                      <h5 className="ms-2 mb-0">
-                        {formatPrice(item.price * item.quantity)}
-                      </h5>
+            <AnimatePresence>
+              {cartList.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 2 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="d-flex align-items-center w-100">
+                    <div className="d-flex align-items-center w-75">
+                      <Link
+                        to={`/item/${item.id}`}
+                        className="text-decoration-none"
+                      >
+                        <img
+                          src={item.pictures?.[0].url}
+                          alt={item.name}
+                          width={60}
+                          height={60}
+                          style={{ objectFit: "contain" }}
+                        />
+                      </Link>
+                      <Link
+                        to={`/item/${item.id}`}
+                        className="mx-4 text-decoration-none"
+                      >
+                        <p className="mb-0 text-ellipsis">{item.name}</p>
+                        <small className="text-muted">
+                          Cantidad: <strong>{item.quantity}</strong>
+                        </small>
+                      </Link>
                     </div>
-                    <Button
-                      className="shadow-none"
-                      onClick={() => removeItem(item.id)}
-                    >
-                      <AiOutlineDelete />
-                    </Button>
+                    <div className="w-25 d-flex align-items-center justify-content-between">
+                      <div>
+                        <h5 className="ms-2 mb-0">
+                          {formatPrice(item.price * item.quantity)}
+                        </h5>
+                      </div>
+                      <Button
+                        className="shadow-none"
+                        onClick={() => removeItem(item.id)}
+                      >
+                        <AiOutlineDelete />
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
             <hr className="my-0" />
             <div className="d-flex justify-content-between">
               <h6>Total</h6>

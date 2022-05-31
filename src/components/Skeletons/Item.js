@@ -10,11 +10,9 @@ const Item = () => {
         <h5>
           <Skeleton width={90} height={30}/>
         </h5>
-        <p className="mb-3">
+        <p className="mb-2">
           <Skeleton count={2}/>
         </p>
-        <Skeleton height={35} className="mb-2"/>
-        <Skeleton height={35}/>
       </div>
     </div>
   );

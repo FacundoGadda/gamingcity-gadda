@@ -5,6 +5,7 @@ import classname from "classnames"
 import { Link } from "react-router-dom"
 
 import { useCartContext } from "../../context/CartContext"
+import { motion, AnimatePresence } from "framer-motion"
 
 const ItemCount = ({ stock, initial, item }) => {
   const [count, setCount] = useState(stock === 0 ? 0 : initial)
@@ -15,20 +16,28 @@ const ItemCount = ({ stock, initial, item }) => {
   return (
     <>
       {click || stock === 0 ? (
-        <div className="d-flex justify-content-evenly gap-2">
-          <Link to="/cart">
-            <Button
-              color="cyan"
-              className="w-100 rounded-3 mb-2 outlined shadow-none"
-              outline
+        <AnimatePresence>
+          <div className="d-flex justify-content-evenly gap-2">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 2 }}
+              exit={{ opacity: 0 }}
             >
-              Ir al carrito
-            </Button>
-          </Link>
-          <Link to="/">
-            <Button>Seguir navegando</Button>
-          </Link>
-        </div>
+              <Link to="/cart">
+                <Button
+                  color="cyan"
+                  className="w-100 rounded-3 mb-2 outlined shadow-none"
+                  outline
+                >
+                  Ir al carrito
+                </Button>
+              </Link>
+              <Link to="/">
+                <Button>Seguir navegando</Button>
+              </Link>
+            </motion.div>
+          </div>
+        </AnimatePresence>
       ) : (
         <>
           <div className="d-flex justify-content-between align-items-center bg-secondary">

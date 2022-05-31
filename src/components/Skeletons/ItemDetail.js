@@ -7,10 +7,13 @@ const ItemDetail = () => {
   const isBigScreen = useMediaQuery({ minWidth: 768 });
 
   return (
-    <div className="bg-white align-middle" style={{ padding: isBigScreen ? 90 : 40 }}>
+    <div
+      className="bg-white box-shadow-detail"
+      style={{ padding: isBigScreen ? "40px 90px" : 40 }}
+    >
       <Row className="align-middle">
         <Col sm={12}>
-          <div className="pt-3">
+          <div className="">
             <Skeleton count={2} height={18} />
             <h5 className="my-4">
               <Skeleton width={120} height={25} />
@@ -20,7 +23,7 @@ const ItemDetail = () => {
             </p>
           </div>
         </Col>
-        <Col className="text-center">
+        <Col className="text-center my-4">
           <Skeleton width={230} height={200} />
         </Col>
       </Row>

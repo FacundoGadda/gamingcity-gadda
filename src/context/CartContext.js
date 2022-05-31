@@ -6,7 +6,8 @@ export const useCartContext = () => useContext(CartContext)
 
 const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([])
-  
+  const [init, setInit] = useState(true)
+
   const addToCart = (item, quantity) => {
     const { name, id, buy_box_winner, pictures } = item
     const { price } = buy_box_winner ?? ""
@@ -31,9 +32,13 @@ const CartContextProvider = ({ children }) => {
     setCartList([])
   }
 
+  const initApp = () => {
+    setInit(false)
+  }
+
   return (
     <CartContext.Provider
-      value={{ cartList, addToCart, clear, removeItem }}
+      value={{ cartList, init, initApp, addToCart, clear, removeItem }}
     >
       {children}
     </CartContext.Provider>
