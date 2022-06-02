@@ -5,7 +5,6 @@ import classname from "classnames"
 import { Link } from "react-router-dom"
 
 import { useCartContext } from "../../context/CartContext"
-import { motion, AnimatePresence } from "framer-motion"
 
 const ItemCount = ({ stock, initial, item }) => {
   const [count, setCount] = useState(stock === 0 ? 0 : initial)
@@ -16,31 +15,26 @@ const ItemCount = ({ stock, initial, item }) => {
   return (
     <>
       {click || stock === 0 ? (
-        <AnimatePresence>
-          <div className="d-flex justify-content-evenly gap-2">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 2 }}
-              exit={{ opacity: 0 }}
+        <div className="d-flex justify-content-evenly gap-3">
+          <Link to="/cart">
+            <Button
+              color="cyan"
+              className="w-100 rounded-3 mb-2 outlined shadow-none"
+              outline
             >
-              <Link to="/cart">
-                <Button
-                  color="cyan"
-                  className="w-100 rounded-3 mb-2 outlined shadow-none"
-                  outline
-                >
-                  Ir al carrito
-                </Button>
-              </Link>
-              <Link to="/">
-                <Button>Seguir navegando</Button>
-              </Link>
-            </motion.div>
-          </div>
-        </AnimatePresence>
+              Ir al carrito
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button>Seguir navegando</Button>
+          </Link>
+        </div>
       ) : (
         <>
-          <div className="d-flex justify-content-between align-items-center bg-secondary">
+          <div
+            className="d-flex justify-content-between align-items-center bg-secondary"
+            style={{ width: 250 }}
+          >
             <Button
               onClick={() => setCount(count - 1)}
               disabled={count === 1 || stock === 0}
@@ -61,7 +55,7 @@ const ItemCount = ({ stock, initial, item }) => {
               </span>
             </Button>
           </div>
-          <div className="mt-3">
+          <div className="mt-3" style={{ width: 250 }}>
             <Button
               onClick={() => {
                 addToCart(item, count)

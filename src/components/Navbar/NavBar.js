@@ -1,17 +1,16 @@
 import React, { useState } from "react"
 
-import { Navbar, NavItem, NavbarToggler, Nav, Collapse } from "reactstrap"
-
-import { FaBars } from "react-icons/fa"
-import { useMediaQuery } from "react-responsive"
-
 import { Link } from "react-router-dom"
+import { Navbar, NavItem, NavbarToggler, Nav, Collapse } from "reactstrap"
+import { useMediaQuery } from "react-responsive"
+import { FaBars } from "react-icons/fa"
 
 import CartWidget from "./CartWidget"
+import Animate from "../Motion/Animate"
+
 import { useCartContext } from "../../context/CartContext"
 import logo from "../../assets/logo/logo.svg"
 
-import { AnimatePresence, motion } from "framer-motion"
 import "./navbar.scss"
 
 const NavBar = () => {
@@ -40,15 +39,9 @@ const NavBar = () => {
         </NavbarToggler>
 
         {isSmallScreen && !!cartList.length && (
-          <AnimatePresence>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 2 }}
-              exit={{ opacity: 0 }}
-            >
-              <CartWidget />
-            </motion.div>
-          </AnimatePresence>
+          <Animate>
+            <CartWidget />
+          </Animate>
         )}
 
         <Collapse navbar isOpen={open}>
@@ -80,15 +73,9 @@ const NavBar = () => {
         </Collapse>
 
         {isBigScreen && !!cartList.length && (
-          <AnimatePresence>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 2 }}
-              exit={{ opacity: 0 }}
-            >
-              <CartWidget />
-            </motion.div>
-          </AnimatePresence>
+          <Animate>
+            <CartWidget />
+          </Animate>
         )}
       </Navbar>
     </div>

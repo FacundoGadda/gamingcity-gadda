@@ -4,8 +4,6 @@ La aplicación funciona con la API de Mercado Libre. Utilicé dos endpoints, uno
 
 Utilicé funciones en la carpeta helpers, para poder parsear los precios de los productos a $AR y poder filtrar por categoría. En este caso, me estoy manejando solamente con productos de catálogo.
 
-No usé un skeleton de carga en el contenedor de productos, ya que cuando se navega entre categorías se renderiza todo tan rápido que afecta la UX.
-
 Dependencias extras utilizadas:
 
 react-icons: Librería de iconos. La elegí por su fácil implementación. Tiene props interesantes para poder personalizarlos.
@@ -18,4 +16,6 @@ react-responsive: Permite implementar media queries de manera sencilla.
 
 reactstrap: Componentes de React Bootstrap, la utilizo porque me parece más eficiente
 la importación de componentes y su implementación. Las props funcionan para la mayoría de los componentes, esto facilita no tener que revisar la documentación frecuentemente.
+
+framer-motion: Permite agregarle animaciones a los componentes.
 

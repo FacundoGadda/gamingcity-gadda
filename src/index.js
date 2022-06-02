@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
 
-import { getFirestoreApp } from './firebase/config';
+import getFirestoreApp from './firebase/config'
 
-import './index.scss';
+import './index.scss'
 
-// getFirestoreApp()
+getFirestoreApp()
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)
