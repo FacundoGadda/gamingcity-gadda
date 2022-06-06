@@ -9,7 +9,7 @@ import Animate from "../../components/Motion/Animate"
 const CartContainer = () => {
   return (
     <Layout>
-      <Container fluid="lg" className="p-12" style={{ maxWidth: 800 }}>
+      <Container fluid="lg" className="mw-800">
         <Row>
           <Col xs={12}>
             <Animate>

@@ -2,6 +2,7 @@ import {
   getFirestore,
   collection,
   getDocs,
+  addDoc,
   getDoc,
   where,
   query,
@@ -42,5 +43,17 @@ export const getProductById = async id => {
     return response.data()
   } catch (error) {
     console.log("Error to get product by id.. => " + error)
+  }
+}
+
+export const sendOrder = async order => {
+  const db = getFirestore()
+  const dbCollection = collection(db, "orders")
+
+  try {
+    const response = await addDoc(dbCollection, order)
+    return response
+  } catch (error) {
+    console.log("Error to send order.. => " + error)
   }
 }

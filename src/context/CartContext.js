@@ -1,5 +1,7 @@
 import React, { useState, createContext, useContext } from "react"
 
+import { sumTotal } from "../helpers/general_helpers"
+
 export const CartContext = createContext([])
 
 export const useCartContext = () => useContext(CartContext)
@@ -31,10 +33,19 @@ const CartContextProvider = ({ children }) => {
     setCartList([])
   }
 
+  const order = {
+    items: cartList.map(({ id, quantity, price, name }) => ({
+      id,
+      quantity,
+      price,
+      name,
+    })),
+    total: sumTotal(cartList),
+    buyer: {}
+  }
+
   return (
-    <CartContext.Provider
-      value={{ cartList, addToCart, clear, removeItem }}
-    >
+    <CartContext.Provider value={{ cartList, order, addToCart, clear, removeItem }}>
       {children}
     </CartContext.Provider>
   )

@@ -1,5 +1,5 @@
 const Layout = ({ children }) => {
-  return <div style={{ marginTop: 20, marginBottom: 35 }}>{children}</div>
+  return <div className="my-4">{children}</div>
 };
 
 export default Layout

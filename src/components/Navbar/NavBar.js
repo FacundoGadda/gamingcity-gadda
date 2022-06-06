@@ -7,15 +7,12 @@ import { FaBars } from "react-icons/fa"
 
 import CartWidget from "./CartWidget"
 import Animate from "../Motion/Animate"
-
-import { useCartContext } from "../../context/CartContext"
 import logo from "../../assets/logo/logo.svg"
 
 import "./navbar.scss"
 
 const NavBar = () => {
   const [open, setOpen] = useState(false)
-  const { cartList } = useCartContext()
 
   const isBigScreen = useMediaQuery({ minWidth: 768 })
   const isSmallScreen = useMediaQuery({ maxWidth: 767 })
@@ -38,7 +35,7 @@ const NavBar = () => {
           <FaBars color="white" />
         </NavbarToggler>
 
-        {isSmallScreen && !!cartList.length && (
+        {isSmallScreen && (
           <Animate>
             <CartWidget />
           </Animate>
@@ -72,7 +69,7 @@ const NavBar = () => {
           </Nav>
         </Collapse>
 
-        {isBigScreen && !!cartList.length && (
+        {isBigScreen && (
           <Animate>
             <CartWidget />
           </Animate>

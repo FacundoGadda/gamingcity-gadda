@@ -19,3 +19,5 @@ la importación de componentes y su implementación. Las props funcionan para la
 
 framer-motion: Permite agregarle animaciones a los componentes.
 
+formik: Librería para el manejo de formularios.
+

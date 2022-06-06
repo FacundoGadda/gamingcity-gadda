@@ -9,14 +9,15 @@ import { Link } from "react-router-dom"
 
 const CartWidget = () => {
   const { cartList } = useCartContext()
+
+  const total = cartList.map(({ quantity }) => quantity).reduce((pv, cv) => pv + cv, 0)
+
   return (
     <Link to="/cart">
       <Button color="primary" className="shadow-none">
         <BiCart color="white" size={30} />
         <Badge color="primary">
-          {cartList
-            .map(({ quantity }) => quantity)
-            .reduce((pv, cv) => pv + cv, 0)}
+          {total === 0 ? "" : total}
         </Badge>
       </Button>
     </Link>

@@ -9,6 +9,14 @@ body {
   padding-top: 80px;
 }
 
+hr {
+  margin: 1rem 0;
+  color: rgb(138, 138, 138);
+  height: 1.5px !important;
+  border: 0; 
+  opacity: 0.25;
+}
+
 p {
   font-size: 14px;
 }
@@ -35,6 +43,10 @@ p {
 
 .fw-500 {
   font-weight: 500 !important;
+}
+
+.mw-800 {
+  max-width: 800px !important;
 }
 
 .outlined:hover {

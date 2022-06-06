@@ -23,7 +23,7 @@ const ItemDetailContainer = () => {
 
   return (
     <Layout>
-      <Container className="p-12" style={{ maxWidth: 800 }}>
+      <Container className="mw-800">
         {loading ? <ItemDetailSkeleton /> : <ItemDetail {...{ item }} />}
       </Container>
     </Layout>
