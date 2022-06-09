@@ -3,11 +3,11 @@ import { Modal, ModalHeader, ModalBody } from "reactstrap"
 
 import "./modal.scss"
 
-const ModalComponent = ({ toggle, modal, modalHeader, modalBody, loading }) => {
+const ModalComponent = ({ toggle, modal, modalHeader, modalBody }) => {
   return (
     <Modal toggle={toggle} isOpen={modal} backdrop="static" centered>
       {modalHeader && (
-        <ModalHeader toggle={loading ? !toggle : toggle}>
+        <ModalHeader toggle={toggle}>
           {modalHeader}
         </ModalHeader>
       )}

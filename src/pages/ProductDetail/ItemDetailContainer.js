@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 
 import { Container } from "reactstrap"
 import { useParams } from "react-router-dom"
+import Helmet from "react-helmet"
 
 import ItemDetailSkeleton from "../../components/Skeletons/ItemDetail"
 import ItemDetail from "../../components/ItemDetail/ItemDetail"
@@ -22,11 +23,16 @@ const ItemDetailContainer = () => {
   }, [])
 
   return (
+    <div>
+      <Helmet>
+        <title>{item.name}</title>
+      </Helmet>
     <Layout>
       <Container className="mw-800">
         {loading ? <ItemDetailSkeleton /> : <ItemDetail {...{ item }} />}
       </Container>
     </Layout>
+    </div>
   )
 }
 

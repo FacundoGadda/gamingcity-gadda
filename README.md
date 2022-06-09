@@ -21,3 +21,5 @@ framer-motion: Permite agregarle animaciones a los componentes.
 
 formik: Librería para el manejo de formularios.
 
+react-helmet: Permite manejar los cambios en el head del documento
+

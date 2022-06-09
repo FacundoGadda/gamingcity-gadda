@@ -25,9 +25,7 @@ const Purchase = ({ modal, toggle }) => {
 
   return (
     <Modal
-      toggle={toggle}
-      modal={modal}
-      loading={loading}
+      {...{ modal, toggle }}
       modalHeader={!success && "Ingrese sus datos"}
       modalBody={!success ? <Form {...{ toggle, setSuccess, setId, setLoading, loading }} /> : <Success id={id} />
     }
