@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Link } from "react-router-dom"
+import { useLocation, Link } from "react-router-dom"
 import { Navbar, NavItem, NavbarToggler, Nav, Collapse } from "reactstrap"
 import { useMediaQuery } from "react-responsive"
 import { FaBars } from "react-icons/fa"
@@ -12,11 +12,16 @@ import logo from "../../assets/logo/logo.svg"
 import "./navbar.scss"
 
 const NavBar = () => {
+  let location = useLocation()
   const [open, setOpen] = useState(false)
 
   const isBigScreen = useMediaQuery({ minWidth: 768 })
   const isSmallScreen = useMediaQuery({ maxWidth: 767 })
 
+  if(location.pathname === '/404'){
+    return null;
+  }
+  
   return (
     <div>
       <Navbar
